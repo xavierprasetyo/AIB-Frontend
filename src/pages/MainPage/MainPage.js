@@ -8,7 +8,8 @@ import {
   mariageOption, 
   educationOption,  
   genderOption,
-  payStatusOption
+  payStatusOption,
+  getSexMarriage
 } from './options'
 
 const MySwal = withReactContent(Swal)
@@ -44,6 +45,8 @@ const MainPage = () => {
   const [pay_status_5, setPayStatus5] = useState(null)
   const [pay_status_6, setPayStatus6] = useState(null)
 
+  let sex_marriage = 0
+
   let data = {
     age,
     marriage,
@@ -67,7 +70,8 @@ const MainPage = () => {
     pay_status_3, 
     pay_status_4, 
     pay_status_5, 
-    pay_status_6, 
+    pay_status_6,
+    sex_marriage 
   }
 
   const unValidatedKey = () => {
@@ -83,6 +87,7 @@ const MainPage = () => {
   const submit = () => {
     const key = unValidatedKey()
     if (!key){
+      data.sex_marriage = getSexMarriage(data.sex, data.marriage)
       console.log(data)
       //axios here
     } else {

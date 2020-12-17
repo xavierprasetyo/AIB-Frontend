@@ -4,7 +4,7 @@ import styles from './Dropdown.module.scss'
 const Dropdown = ({ value, options, placeholder, setValue, title }) => {
   const handleChange = (newValue) => {
     if (newValue) {
-      setValue(newValue)
+      setValue(parseInt(newValue))
     }
   }
   return (
@@ -15,11 +15,11 @@ const Dropdown = ({ value, options, placeholder, setValue, title }) => {
       <select
         className={styles.input}
         value={value}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => setValue(parseInt(e.target.value))}
       >
         <option value={null}>{placeholder}</option>
-        {options.map(item => (
-          <option value={item.value}>{item.label}</option>
+        {options.map((item,idx) => (
+          <option key={idx} value={item.value}>{item.label}</option>
         ))}
       </select>
     </div>

@@ -24,6 +24,40 @@ export const genderOption = [
   }
 ]
 
+export const getSexMarriage = (sex, marriage) => {
+  let res
+  if (sex === 1){
+    switch(marriage){
+      case 1:
+        res = 1
+        break
+      case 2:
+        res = 2
+        break
+      case 3:
+        res = 3
+        break
+      default:
+        break
+    }
+  } else if (sex === 2){
+    switch(marriage){
+      case 1:
+        res = 4
+        break
+      case 2:
+        res = 5
+        break
+      case 3:
+        res = 6
+        break
+      default:
+        break
+    }
+  }
+  return res
+}
+
 export const educationOption = [
   {
     value: 1,
