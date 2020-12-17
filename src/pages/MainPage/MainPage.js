@@ -87,9 +87,31 @@ const MainPage = () => {
   const submit = () => {
     const key = unValidatedKey()
     if (!key){
+      MySwal.fire({
+        title: "Please wait",
+        showSpinner: true,
+        showConfirmButton: false
+      })
       data.sex_marriage = getSexMarriage(data.sex, data.marriage)
-      console.log(data)
-      //axios here
+      axios.post('https://aib-backend-p3xrbgrmzq-et.a.run.app/api',data)
+      .then(res => {
+        const def = res.data
+        if (def === "1"){
+          setResult('Default')
+        } else if (def === "0") {
+          setResult('Not Default')
+        }
+        setTimeout(() => MySwal.close(), 500)
+      })
+      .catch(e => {
+        MySwal.close()
+        MySwal.fire({
+          title: "Ups terjadi error!",
+          icon: 'error',
+          text: `error: ${e}`,
+          timer: 2000
+        })
+      }) 
     } else {
       MySwal.fire({
         title: `Field ${key} Kosong!`,
