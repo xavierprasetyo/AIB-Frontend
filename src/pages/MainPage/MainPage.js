@@ -18,6 +18,7 @@ const MainPage = () => {
   const [result, setResult] = useState('-')
 
   const [marriage, setMariage] = useState(null)
+  const [age, setAge] = useState(null)
   const [sex, setSex] = useState(null)
   const [edu, setEdu] = useState(null)
   const [limit, setLimit] = useState(null)
@@ -44,6 +45,7 @@ const MainPage = () => {
   const [pay_status_6, setPayStatus6] = useState(null)
 
   let data = {
+    age,
     marriage,
     sex,
     edu,
@@ -95,17 +97,23 @@ const MainPage = () => {
 
   return (
     <div className={styles.container} >
-        <div className={styles.result} >
-          Result: {result}
-        </div>
-        <div className={styles.inputContainer} >
-          <Dropdown
-            title="Sex"
-            value={sex}
-            placeholder="Pilih Gender"
-            options={genderOption}
-            setValue={setSex}
-          />
+      <div className={styles.result} >
+        Result: {result}
+      </div>
+      <div className={styles.inputContainer} >
+        <Dropdown
+          title="Sex"
+          value={sex}
+          placeholder="Pilih Gender"
+          options={genderOption}
+          setValue={setSex}
+        />
+
+        <MainInput
+          title="Age"
+          value={age}
+          setValue={setAge}
+        />
 
         <Dropdown
           title="Marriage"
@@ -122,7 +130,7 @@ const MainPage = () => {
           options={educationOption}
           setValue={setMariage}
         />   
-        
+      
         <MainInput
           title="Limit"
           value={limit}
